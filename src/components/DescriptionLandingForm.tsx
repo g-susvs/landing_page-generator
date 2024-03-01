@@ -1,4 +1,5 @@
 'use client'
+import { APIResponse } from '@/interfaces/api-response'
 import { useGeneratePageStore } from '@/store/generatePageStore'
 import { FormEvent } from 'react'
 
@@ -6,6 +7,7 @@ export const DescriptionLandingForm = () => {
 
   const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
   const setIsLoading = useGeneratePageStore(state => state.setIsLoading)
+  const setUsage = useGeneratePageStore(state => state.setUsage)
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -28,9 +30,15 @@ export const DescriptionLandingForm = () => {
         body: JSON.stringify(body)
       })
 
-      const json = await resp.json()
+      if(!resp.ok){
+        setIsLoading(false)
+        return
+      }
+
+      const json: APIResponse = await resp.json()
       setPageHtml(json.data)
       setIsLoading(false)
+      setUsage(json.usage)
 
     } catch (error) {
       console.log(error)

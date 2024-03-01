@@ -1,5 +1,6 @@
 'use client'
 import { useForm } from "@/hooks/useForm"
+import { APIResponse } from "@/interfaces/api-response"
 import { useGeneratePageStore } from "@/store/generatePageStore"
 import { ChangeEvent, useState } from "react"
 
@@ -10,6 +11,8 @@ export const EditSection = () => {
     const [checked, setChecked] = useState('hero')
     const template = useGeneratePageStore(state => state.html)
     const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
+    const setUsage = useGeneratePageStore(state => state.setUsage)
+
     const { description, onTextAreaChange } = useForm({
         description: ''
     })
@@ -35,11 +38,12 @@ export const EditSection = () => {
                 },
                 body: JSON.stringify(body)
             })
-
-            const json = await resp.json()
-            console.log(json.response)
+            if(!resp.ok){
+                return
+              }
+            const json: APIResponse = await resp.json()
             setPageHtml(json.data)
-
+            setUsage(json.usage)
 
         } catch (error) {
             console.log(error)
