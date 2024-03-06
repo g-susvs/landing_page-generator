@@ -3,8 +3,8 @@ import { Sidebar } from "@/components/Sidebar";
 
 export default function GeneratorPage() {
 
-    // Smart gym
-    // Tengo un gym muy popular en mi ciudad
+    // Gym Street
+    // Tengo un gym muy popular en mi ciudad, el enfoque de mi gym está orientado a entrenar calistenia y pesas, tenemos profesores profesionales del deporte.
     // Agregale una calificación de 5 estrellas debajo del boton de reservar ahora
     // Agrega un menu al navbar que tenga los siguientes titulos: HOME, ABOUT, SERVICES
 

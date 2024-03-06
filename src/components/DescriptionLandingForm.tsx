@@ -6,6 +6,7 @@ import { FormEvent } from 'react'
 export const DescriptionLandingForm = () => {
 
   const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
+  const html = useGeneratePageStore(state => state.html)
   const setIsLoading = useGeneratePageStore(state => state.setIsLoading)
   const setUsage = useGeneratePageStore(state => state.setUsage)
 
@@ -17,12 +18,12 @@ export const DescriptionLandingForm = () => {
       const title = formData.get("title")
       const desc = formData.get("description")
 
-      const prompt = `Mi pagina se llama ${title}, ${desc}`
+      const prompt = (html) ? desc : `Mi pagina se llama ${title}, ${desc}`
       const body = {
         prompt,
       }
 
-      const resp = await fetch('http://localhost:3001/gen/', {
+      const resp = await fetch('http://localhost:3001/gen/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -30,7 +31,7 @@ export const DescriptionLandingForm = () => {
         body: JSON.stringify(body)
       })
 
-      if(!resp.ok){
+      if (!resp.ok) {
         setIsLoading(false)
         return
       }

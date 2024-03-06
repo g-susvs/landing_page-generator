@@ -16,3 +16,16 @@
 .sidebar{
   @apply  p-4 flex flex-col;
 }
+
+.cardTemplate{
+  @apply w-[600px] h-[300px] border-2 border-gray-900 rounded-md overflow-hidden cursor-pointer;
+}
+.cardTemplate:hover > img{
+  transition: all 300ms;
+  transform: scale(1.1);
+  background-color: aqua;
+}
+.cardTemplate__img{
+  width: 100%;
+  height: 100%;
+}
