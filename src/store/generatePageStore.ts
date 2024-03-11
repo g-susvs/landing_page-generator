@@ -5,22 +5,17 @@ interface GeneratePageState {
     html: string;
     loading: boolean;
     usage: Usage;
-    histoy:Message[]
+    templateOption: number;
     setIsLoading: (value: boolean) => void;
     setPageHtml: (value: string) => void;
     setUsage: (value: Usage) => void;
-    setHistory: (value: Message) => void;
-}
-
-interface Message {
-    role: 'assistant' | 'user',
-    content: string
+    setTemplateOption: (value: number) => void;
 }
 
 export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     loading: false,
     html: '',
-    histoy: [],
+    templateOption: 0,
     usage: {
         prompt_tokens: 0,
         completion_tokens: 0,
@@ -40,7 +35,7 @@ export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     setUsage: (value: Usage) => set(state => ({
         usage: value
     })),
-    setHistory:  (value: Message) => set(state => ({
-        histoy: [...state.histoy, value]
-    })),
+    setTemplateOption: (value: number) => set(state => ({
+        templateOption: value
+    }))
 }))

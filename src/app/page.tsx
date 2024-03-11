@@ -5,13 +5,13 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
 
-  const resp = await fetch('http://localhost:3001/gen/system')
+  // const resp = await fetch('http://localhost:3001/gen/system')
 
-  const json = await resp.json()
+  // const json = await resp.json()
 
-  console.log(json)
+  // console.log(json)
 
-  if(json.context) redirect('/create')
+  // if(json.context) redirect('/create')
 
   
   return (

@@ -15,13 +15,13 @@ export const Sidebar = () => {
             <DescriptionLandingForm />
             <br />
             <hr />
-            {/* {html && <EditSection />} */}
+            {html && <EditSection />}
 
-            <ul className="text-lg">
+            {/* <ul className="text-lg">
                 <li>Prompt tokens: {usage.prompt_tokens}</li>
                 <li>Completion tokens: {usage.completion_tokens}</li>
                 <li>Total tokens: {usage.total_tokens}</li>
-            </ul>
+            </ul> */}
 
         </aside>
     )

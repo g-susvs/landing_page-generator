@@ -7,6 +7,7 @@ export const DescriptionLandingForm = () => {
 
   const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
   const html = useGeneratePageStore(state => state.html)
+  const templateOption = useGeneratePageStore(state => state.templateOption)
   const setIsLoading = useGeneratePageStore(state => state.setIsLoading)
   const setUsage = useGeneratePageStore(state => state.setUsage)
 
@@ -20,10 +21,11 @@ export const DescriptionLandingForm = () => {
 
       const prompt = (html) ? desc : `Mi pagina se llama ${title}, ${desc}`
       const body = {
+        template_option: templateOption,
         prompt,
       }
 
-      const resp = await fetch('http://localhost:3001/gen/chat', {
+      const resp = await fetch('http://localhost:3001/dom/custom', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -32,6 +34,8 @@ export const DescriptionLandingForm = () => {
       })
 
       if (!resp.ok) {
+        const error = await resp.json()
+        console.log(error)
         setIsLoading(false)
         return
       }
@@ -39,7 +43,8 @@ export const DescriptionLandingForm = () => {
       const json: APIResponse = await resp.json()
       setPageHtml(json.data)
       setIsLoading(false)
-      setUsage(json.usage)
+      console.log(json.usage)
+      // setUsage(json.usage)
 
     } catch (error) {
       console.log(error)

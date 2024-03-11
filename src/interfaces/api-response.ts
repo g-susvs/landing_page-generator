@@ -2,7 +2,7 @@
 
 export interface APIResponse {
     data:  string;
-    usage: Usage;
+    usage: any;
 }
 
 export interface Usage {
