@@ -11,9 +11,6 @@ export const Sidebar = () => {
     return (
         <aside className="sidebar">
             <h1 className="text-3xl">Landing Page Generator</h1>
-            <br />
-            <DescriptionLandingForm />
-            <br />
             <hr />
             {html && <EditSection />}
 

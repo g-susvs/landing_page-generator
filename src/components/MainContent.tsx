@@ -1,6 +1,6 @@
 'use client'
 import { useGeneratePageStore } from "@/store/generatePageStore"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
@@ -8,6 +8,7 @@ export const MainContent = () => {
 
     const html = useGeneratePageStore(state => state.html)
     const isLoading = useGeneratePageStore(state => state.loading)
+    const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
 
     const [showPreviw, setShowPreviw] = useState(true)
 
@@ -38,6 +39,18 @@ export const MainContent = () => {
             console.log(error)
         }
     }
+
+
+
+    useEffect(() => {
+        fetch('http://localhost:3001/dom/exist')
+        .then( resp => resp.json())
+        .then(data => {
+            if(data.template){
+                setPageHtml(data.template)
+              }
+        })
+    }, [])
 
     return (
         <main className="p-4">
