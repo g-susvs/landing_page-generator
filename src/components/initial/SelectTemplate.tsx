@@ -12,8 +12,6 @@ export const SelectTemplate = () => {
 
   const onSetTemplate = async (option: number) => {
     setTemplateOption(option);
-
-    router.push("/create");
   };
 
   return (

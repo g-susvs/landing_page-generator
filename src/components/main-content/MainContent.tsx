@@ -1,14 +1,14 @@
 "use client";
 import { useEffect } from "react";
-import { useGeneratePageStore ,useUiStore } from "@/store";
+import { useGeneratePageStore, useUiStore } from "@/store";
 import { EditorCodeView, TopMenu } from ".";
+import { LandingInterfaceView } from "./LandingInterfaceView";
 
 export const MainContent = () => {
-  const html = useGeneratePageStore((state) => state.html)
-  const isLoading = useGeneratePageStore((state) => state.loading)
-  const setPageHtml = useGeneratePageStore((state) => state.setPageHtml)
-  const showPreview = useUiStore((state) => state.showPreview)
-  
+  const isLoading = useGeneratePageStore((state) => state.loading);
+  const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+  const showPreview = useUiStore((state) => state.showPreview);
+
   useEffect(() => {
     fetch("http://localhost:3001/dom/exist")
       .then((resp) => resp.json())
@@ -21,24 +21,12 @@ export const MainContent = () => {
 
   return (
     <main className="p-4">
-        <TopMenu/>
+      <TopMenu />
       <br />
       {isLoading ? (
         <h2 className="text-3xl">...Cargando</h2>
       ) : (
-        <div>
-          {showPreview ? (
-            <section>
-              <div className="w-full h-full aspect-video">
-                <iframe srcDoc={html} className="w-full h-full" />
-              </div>
-            </section>
-          ) : (
-            <section className="w-full">
-              <EditorCodeView/>
-            </section>
-          )}
-        </div>
+        <div>{showPreview ? <LandingInterfaceView /> : <EditorCodeView />}</div>
       )}
     </main>
   );

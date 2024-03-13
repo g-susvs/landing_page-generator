@@ -2,7 +2,7 @@
 
 import { useGeneratePageStore } from "@/store";
 import { Editor } from "@monaco-editor/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 export const EditorCodeView = () => {
   const html = useGeneratePageStore((state) => state.html);
   const setEditedTemplate = useGeneratePageStore((state) => state.setEditedTemplate);
@@ -12,7 +12,8 @@ export const EditorCodeView = () => {
   }, [])
 
   return (
-    <div className="">
+    <section className="w-full">
+
       <br />
       <Editor
         className="w-[800px] h-[80vh]"
@@ -22,6 +23,6 @@ export const EditorCodeView = () => {
         options={{minimap:{enabled: false}}}
         onChange={(value) => setEditedTemplate(value!)}
       />
-    </div>
+    </section>
   );
 };

@@ -26,6 +26,7 @@ export const DescriptionLandingForm = () => {
         template_option: templateOption,
         prompt,
       }
+      console.log(body)
 
       const resp = await fetch('http://localhost:3001/dom/custom', {
         method: 'POST',
