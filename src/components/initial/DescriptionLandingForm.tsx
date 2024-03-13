@@ -10,7 +10,6 @@ export const DescriptionLandingForm = () => {
   const html = useGeneratePageStore(state => state.html)
   const templateOption = useGeneratePageStore(state => state.templateOption)
   const setIsLoading = useGeneratePageStore(state => state.setIsLoading)
-  const setUsage = useGeneratePageStore(state => state.setUsage)
 
   const router = useRouter()
 
@@ -48,7 +47,6 @@ export const DescriptionLandingForm = () => {
       setIsLoading(false)
       console.log(json.usage)
       router.push('/create')
-      // setUsage(json.usage)
 
     } catch (error) {
       console.log(error)

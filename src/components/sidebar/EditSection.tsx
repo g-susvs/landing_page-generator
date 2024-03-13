@@ -2,19 +2,16 @@
 import { useForm } from "@/hooks/useForm";
 import { APIResponse } from "@/interfaces/api-response";
 import { useGeneratePageStore } from "@/store/generatePageStore";
-import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 const sections = ["header", "hero", "about", "contact", "footer"];
 
 export const EditSection = () => {
   
-  const router = useRouter()
   const [checked, setChecked] = useState("hero");
 
   const template = useGeneratePageStore((state) => state.html);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
-  const setUsage = useGeneratePageStore((state) => state.setUsage);
 
   const { description, onTextAreaChange } = useForm({
     description: ""
@@ -24,7 +21,7 @@ export const EditSection = () => {
     setChecked(event.target.value);
   };
 
-  const sendInfoToEdit = async () => {
+  async function sendInfoToEdit() {
     console.log("...cargando");
     try {
       const body = {
@@ -79,12 +76,9 @@ export const EditSection = () => {
           </div>
         ))}
       </div>
+      <br />
       <button type="button" className="btn" onClick={sendInfoToEdit}>
         Cambiar
-      </button>
-      <br />
-      <button type="button" className="btn" onClick={() => router.push('edit-code')}>
-        Edit code
       </button>
     </>
   );

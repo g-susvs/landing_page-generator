@@ -1,7 +1,5 @@
-import { DescriptionLandingForm } from "@/components/DescriptionLandingForm";
-import { SelectTemplate } from "@/components/SelectTemplate";
-import { useGeneratePageStore } from "@/store/generatePageStore";
 import { redirect } from "next/navigation";
+import { DescriptionLandingForm, SelectTemplate } from "@/components/initial";
 
 export const dynamic = 'force-dynamic'
 

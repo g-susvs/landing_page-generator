@@ -1,5 +1,5 @@
-import { MainContent } from "@/components/MainContent";
-import { Sidebar } from "@/components/Sidebar";
+import { MainContent } from "@/components/main-content";
+import { Sidebar } from "@/components/sidebar";
 
 export default function GeneratorPage() {
 
@@ -14,7 +14,7 @@ export default function GeneratorPage() {
     // Mi negocio se llama 'Sabrocito', es un emprendimiento de comida rápida, nos especializamos en una gran diversidad de hamburguesas, es una restaurant muy popular en mi ciudad, nos ubicamos en el centro de lima.
     
     return (
-        <div className="grid grid-cols-[300px_1fr]">
+        <div className="grid grid-cols-[300px_1fr] h-[100vh]">
             <Sidebar />
             <MainContent />
         </div>
