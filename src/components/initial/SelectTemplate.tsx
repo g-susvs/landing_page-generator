@@ -2,10 +2,8 @@
 
 import { useGeneratePageStore } from "@/store/generatePageStore";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export const SelectTemplate = () => {
-  const router = useRouter();
   const setTemplateOption = useGeneratePageStore(
     (state) => state.setTemplateOption
   );

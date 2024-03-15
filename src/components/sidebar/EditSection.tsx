@@ -30,7 +30,7 @@ export const EditSection = () => {
         template
       };
 
-      const resp = await fetch("http://localhost:3001/dom/section", {
+      const resp = await fetch("http://localhost:3001/api/landing/edit-section", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

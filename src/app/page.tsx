@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
 
-  const resp = await fetch('http://localhost:3001/dom/exist')
+  const resp = await fetch('http://localhost:3001/api/landing/exist')
 
   const json = await resp.json()
 

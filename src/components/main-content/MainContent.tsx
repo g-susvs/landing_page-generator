@@ -10,7 +10,7 @@ export const MainContent = () => {
   const showPreview = useUiStore((state) => state.showPreview);
 
   useEffect(() => {
-    fetch("http://localhost:3001/dom/exist")
+    fetch("http://localhost:3001/api/landing/exist")
       .then((resp) => resp.json())
       .then((data) => {
         if (data.template) {
