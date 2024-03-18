@@ -7,20 +7,16 @@ export default async function Home() {
 
   const resp = await fetch('http://localhost:3001/api/landing/exist')
 
+  if (!resp.ok) {
+    redirect('/started/set-prompt')
+
+  }
   const json = await resp.json()
 
-  if(json.template){
-    redirect('/create')
-  }
 
-  
-  return (
-    <div className="p-4">
-      <h4 className="text-3xl">Plantillas</h4>
-      <br />
-      <DescriptionLandingForm/>
-      <br />
-      <SelectTemplate/>
-    </div>
-  );
+  if (json.template) {
+    redirect('/create')
+  } else {
+    redirect('/started/set-prompt')
+  }
 }

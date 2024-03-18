@@ -1,14 +1,16 @@
 "use client";
 
+import { useDataToStore } from "@/store";
 import { useGeneratePageStore } from "@/store/generatePageStore";
 import Image from "next/image";
 
 export const SelectTemplate = () => {
-  const setTemplateOption = useGeneratePageStore(
+  const setTemplateOption = useDataToStore(
     (state) => state.setTemplateOption
   );
 
   const onSetTemplate = async (option: number) => {
+    console.log(option)
     setTemplateOption(option);
   };
 
@@ -16,7 +18,7 @@ export const SelectTemplate = () => {
     <div className="flex gap-2">
       <div className="cardTemplate" onClick={() => onSetTemplate(1)}>
         <Image
-          src="/templates/template.png"
+          src="/templates/template-1.png"
           width={300}
           height={200}
           alt="template 1"
@@ -25,19 +27,19 @@ export const SelectTemplate = () => {
       </div>
       <div className="cardTemplate" onClick={() => onSetTemplate(2)}>
         <Image
-          src="/templates/template1.jpg"
+          src="/templates/template-2.png"
           width={300}
           height={200}
-          alt="template 1"
+          alt="template 2"
           className="cardTemplate__img"
         />
       </div>
       <div className="cardTemplate" onClick={() => onSetTemplate(3)}>
         <Image
-          src="/templates/template2.png"
+          src="/templates/template-3.png"
           width={300}
           height={200}
-          alt="template 2"
+          alt="template 3"
           className="cardTemplate__img"
         />
       </div>

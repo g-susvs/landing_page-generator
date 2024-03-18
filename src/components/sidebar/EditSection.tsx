@@ -7,7 +7,7 @@ import { ChangeEvent, useState } from "react";
 const sections = ["header", "hero", "about", "contact", "footer"];
 
 export const EditSection = () => {
-  
+
   const [checked, setChecked] = useState("hero");
 
   const template = useGeneratePageStore((state) => state.html);

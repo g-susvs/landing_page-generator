@@ -18,47 +18,7 @@ export const DescriptionLandingForm = () => {
     setPrompt(prompt);
     router.push("/started/templates");
   }
-  // async function onSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault()
-  //   setIsLoading(true)
-  //   try {
-  //     const formData = new FormData(event.currentTarget)
-  //     const title = formData.get("title")
-  //     const desc = formData.get("description")
 
-  //     const prompt = (html) ? desc : `Mi pagina se llama ${title}, ${desc}`
-  //     const body = {
-  //       template_option: templateOption,
-  //       prompt,
-  //     }
-  //     console.log(body)
-
-  //     const resp = await fetch('http://localhost:3001/dom/custom', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(body)
-  //     })
-
-  //     if (!resp.ok) {
-  //       const error = await resp.json()
-  //       console.log(error)
-  //       setIsLoading(false)
-  //       return
-  //     }
-
-  //     const json: APIResponse = await resp.json()
-  //     setPageHtml(json.data)
-  //     setIsLoading(false)
-  //     console.log(json.usage)
-  //     router.push('/create')
-
-  //   } catch (error) {
-  //     console.log(error)
-  //     setIsLoading(false)
-  //   }
-  // }
 
   return (
     <form onSubmit={onSubmit} className="descriptionForm">

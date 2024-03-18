@@ -7,12 +7,12 @@ export const TopMenu = () => {
   const editedTemplate = useGeneratePageStore((state) => state.editedTemplate);
   const toggleShowPreview = useUiStore((state) => state.toggleShowPreview);
 
-  async function exportLandingPage (){
+  async function exportLandingPage() {
     try {
       const body = {
         template: html
       };
-      const resp = await fetch("http://localhost:3001/gen/export", {
+      const resp = await fetch("http://localhost:3001/api/landing/export", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -34,14 +34,14 @@ export const TopMenu = () => {
     }
   };
 
-  async function setPreview(){
+  async function setPreview() {
     if (editedTemplate === html) {
       toggleShowPreview();
       return;
     }
 
     try {
-      const resp = await fetch("http://localhost:3001/dom/edit-template", {
+      const resp = await fetch("http://localhost:3001/api/landing/edit-template", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
