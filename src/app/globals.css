@@ -6,10 +6,6 @@
   @apply py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-700 disabled:opacity-50;
 }
 
-
-.descriptionForm{
-  @apply flex flex-col gap-4;
-}
 .input{
   @apply p-2 border-[1px] border-gray-500 rounded-md;
 }
@@ -17,8 +13,33 @@
   @apply  p-4 flex flex-col;
 }
 
+
+/* started/set-prompt */
+.promptContainer{
+  width: 60%;
+  padding: 60px 20px;
+  border: 10px solid rgb(175, 179, 223);
+  border-radius: 40px
+}
+.descriptionForm{
+  @apply flex flex-col gap-6 justify-center items-center;
+}
+.promptContainer__title{
+  @apply w-[70%] p-2 border-2 border-blue-700 rounded-md;
+  font-size: 1.4rem;
+}
+.promptContainer__desc{
+  @apply w-[70%] p-2 border-2 border-blue-700 rounded-md;
+  font-size: 1.4rem;
+}
+.promptContainer__button{
+
+}
+
+
+/* started/templates */
 .cardTemplate{
-  @apply w-[600px] h-[300px] border-2 border-gray-900 rounded-md overflow-hidden cursor-pointer;
+  @apply w-full h-[300px] border-2 border-gray-400 rounded-md overflow-hidden cursor-pointer;
 }
 .cardTemplate:hover > img{
   transition: all 300ms;

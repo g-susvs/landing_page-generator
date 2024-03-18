@@ -4,10 +4,13 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   return (
-    <div className="p-4">
-      <h4 className="text-3xl">Plantillas</h4>
-      <br />
-      <DescriptionLandingForm />
-    </div>
+    <main className="w-full flex justify-center pt-[100px]">
+      <div className="promptContainer">
+        <h1 className="text-4xl font-bold font-sans text-center pb-10">
+          ¿Cuál es la idea de tu negocio?
+        </h1>
+        <DescriptionLandingForm />
+      </div>
+    </main>
   );
 }

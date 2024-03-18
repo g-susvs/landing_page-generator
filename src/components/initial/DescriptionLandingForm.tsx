@@ -27,7 +27,7 @@ export const DescriptionLandingForm = () => {
         name="title"
         placeholder="Ingresa el nombre de la aplicación"
         required
-        className="input"
+        className="promptContainer__title"
       />
       <textarea
         name="description"
@@ -35,7 +35,7 @@ export const DescriptionLandingForm = () => {
         id=""
         cols={20}
         rows={5}
-        className="input"
+        className="promptContainer__desc"
       ></textarea>
       <button type="submit" className="btn">
         Siguiente
