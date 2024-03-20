@@ -1,17 +1,18 @@
 "use client";
 import { useForm } from "@/hooks/useForm";
 import { APIResponse } from "@/interfaces/api-response";
+import { useUiStore } from "@/store";
 import { useGeneratePageStore } from "@/store/generatePageStore";
 import { ChangeEvent, useState } from "react";
-
-const sections = ["header", "hero", "about", "contact", "footer"];
 
 export const EditSection = () => {
 
   const [checked, setChecked] = useState("hero");
-
+  
+  const sections = useGeneratePageStore((state) => state.sections);
   const template = useGeneratePageStore((state) => state.html);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+  const toggleLoadingEditSection = useUiStore((state) => state.toggleLoadingEditSection);
 
   const { description, onTextAreaChange } = useForm({
     description: ""
@@ -22,7 +23,7 @@ export const EditSection = () => {
   };
 
   async function sendInfoToEdit() {
-    console.log("...cargando");
+toggleLoadingEditSection()
     try {
       const body = {
         prompt: description,
@@ -45,6 +46,7 @@ export const EditSection = () => {
       const json: APIResponse = await resp.json();
       setPageHtml(json.data);
       console.log(json.usage);
+      toggleLoadingEditSection()
       // setUsage(json.usage)
     } catch (error) {
       console.log(error);

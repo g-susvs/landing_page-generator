@@ -7,12 +7,14 @@ interface GeneratePageState {
     usage: Usage;
     templateOption: number;
     editedTemplate: string;
+    sections: string[];
 
     setIsLoading: (value: boolean) => void;
     setPageHtml: (value: string) => void;
     setEditedTemplate: (value: string) => void;
     setUsage: (value: Usage) => void;
     setTemplateOption: (value: number) => void;
+    setSections: (value: string[]) => void;
 }
 
 export const useGeneratePageStore = create<GeneratePageState>((set) => ({
@@ -20,6 +22,7 @@ export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     html: '',
     templateOption: 0,
     editedTemplate: '',
+    sections:[],
     usage: {
         prompt_tokens: 0,
         completion_tokens: 0,
@@ -44,5 +47,8 @@ export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     })),
     setTemplateOption: (value: number) => set(state => ({
         templateOption: value
+    })),
+    setSections: (value: string[]) => set(state => ({
+        sections: [...value]
     }))
 }))

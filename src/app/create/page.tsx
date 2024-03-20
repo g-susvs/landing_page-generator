@@ -11,6 +11,7 @@ export default function GeneratorPage() {
 
   const html = useGeneratePageStore((state) => state.html);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+  const setSections = useGeneratePageStore((state) => state.setSections);
 
   useEffect(() => {
     if (html) return;
@@ -20,6 +21,7 @@ export default function GeneratorPage() {
       .then((data) => {
         if (data.template) {
           setPageHtml(data.template);
+          setSections(data.sections)
         } else {
           console.log(data);
           router.push("/");

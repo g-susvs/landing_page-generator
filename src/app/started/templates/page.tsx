@@ -10,6 +10,7 @@ export default function SetPromptPage() {
   const prompt = useDataToStore((state) => state.prompt);
   const templateOption = useDataToStore((state) => state.template_option);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+  const setSections = useGeneratePageStore((state) => state.setSections);
 
   async function onSubmit() {
     try {
@@ -35,6 +36,7 @@ export default function SetPromptPage() {
 
       const json = await resp.json();
       setPageHtml(json.data);
+      setSections(json.sections)
       console.log(json.usage);
       router.push("/create");
     } catch (error) {
