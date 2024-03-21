@@ -10,7 +10,7 @@
   @apply p-2 border-[1px] border-gray-500 rounded-md;
 }
 .sidebar{
-  @apply  p-4 flex flex-col;
+  @apply flex flex-col;
 }
 
 

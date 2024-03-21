@@ -1,2 +1,2 @@
-export { EditSection } from "./EditSection";
+export { SectionList } from "./SectionList";
 export { Sidebar } from "./Sidebar";

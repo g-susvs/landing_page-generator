@@ -1,11 +1,15 @@
 'use client'
+
 import { useUiStore, useGeneratePageStore } from "@/store";
+import { FaCode, FaDownload } from "react-icons/fa";
+import { FiEye } from "react-icons/fi";
 
 export const TopMenu = () => {
   const html = useGeneratePageStore((state) => state.html);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
   const editedTemplate = useGeneratePageStore((state) => state.editedTemplate);
-  const toggleShowPreview = useUiStore((state) => state.toggleShowPreview);
+  const showCode = useUiStore((state) => state.showCode);
+  const toggleShowCode = useUiStore((state) => state.toggleShowCode);
 
   async function exportLandingPage() {
     try {
@@ -36,7 +40,7 @@ export const TopMenu = () => {
 
   async function setPreview() {
     if (editedTemplate === html) {
-      toggleShowPreview();
+      toggleShowCode();
       return;
     }
 
@@ -63,19 +67,22 @@ export const TopMenu = () => {
       console.log(error)
     }
 
-    toggleShowPreview()
+    toggleShowCode()
   }
 
   return (
     <section className="flex gap-4">
-      <button className="btn" onClick={setPreview}>
-        PREVIEW
-      </button>
-      <button className="btn" onClick={() => toggleShowPreview()}>
-        CODE
-      </button>
+      {
+        (!showCode)
+          ? <button className="btn" onClick={setPreview}>
+            <FiEye />
+          </button>
+          : <button className="btn" onClick={() => toggleShowCode()}>
+            <FaCode />
+          </button>
+      }
       <button className="btn" disabled={!html} onClick={exportLandingPage}>
-        EXPORT
+        <FaDownload />
       </button>
     </section>
   );

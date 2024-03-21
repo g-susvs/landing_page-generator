@@ -30,7 +30,7 @@ export default function GeneratorPage() {
   }, []);
 
   return (
-    <div className="grid grid-cols-[300px_1fr] h-[100vh]">
+    <div className="grid grid-cols-[400px_1fr] h-[100vh] overflow-hidden">
       <Sidebar />
       <MainContent />
     </div>

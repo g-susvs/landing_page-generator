@@ -8,18 +8,18 @@ export const EditorCodeView = () => {
   const setEditedTemplate = useGeneratePageStore((state) => state.setEditedTemplate);
 
   useEffect(() => {
-   setEditedTemplate(html)
+    setEditedTemplate(html)
   }, [])
 
   return (
 
-      <Editor
-        className="w-full h-[88vh]"
-        value={html}
-        theme="vs-dark"
-        defaultLanguage="html"
-        options={{minimap:{enabled: false}}}
-        onChange={(value) => setEditedTemplate(value!)}
-      />
+    <Editor
+      className="w-full h-[88vh]"
+      value={html}
+      theme="vs-dark"
+      defaultLanguage="html"
+      options={{ minimap: { enabled: false }, padding: { top: 20 } }}
+      onChange={(value) => setEditedTemplate(value!)}
+    />
   );
 };

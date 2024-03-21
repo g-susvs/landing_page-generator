@@ -1,19 +1,19 @@
 import { create } from "zustand";
 
-interface UiStore{
-    showPreview: boolean;
-    toggleShowPreview: () => void;
+interface UiStore {
+    showCode: boolean;
+    toggleShowCode: () => void;
     loadingEditSection: boolean;
     toggleLoadingEditSection: () => void;
 }
 
 export const useUiStore = create<UiStore>((set) => ({
-    showPreview: true,
-    toggleShowPreview: () => set(state => ({
-        showPreview: !state.showPreview
+    showCode: true,
+    toggleShowCode: () => set(state => ({
+        showCode: !state.showCode
     })),
     loadingEditSection: false,
-    toggleLoadingEditSection:() => set(state => ({
+    toggleLoadingEditSection: () => set(state => ({
         loadingEditSection: !state.loadingEditSection
     })),
 }))
