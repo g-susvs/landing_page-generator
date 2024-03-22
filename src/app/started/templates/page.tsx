@@ -36,7 +36,7 @@ export default function SetPromptPage() {
 
       const json = await resp.json();
       setPageHtml(json.data);
-      setSections(json.sections)
+      setSections(json.sectionsId)
       console.log(json.usage);
       router.push("/create");
     } catch (error) {

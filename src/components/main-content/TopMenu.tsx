@@ -7,6 +7,7 @@ import { FiEye } from "react-icons/fi";
 export const TopMenu = () => {
   const html = useGeneratePageStore((state) => state.html);
   const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+  const setSections = useGeneratePageStore((state) => state.setSections);
   const editedTemplate = useGeneratePageStore((state) => state.editedTemplate);
   const showCode = useUiStore((state) => state.showCode);
   const toggleShowCode = useUiStore((state) => state.toggleShowCode);
@@ -62,6 +63,7 @@ export const TopMenu = () => {
       }
 
       const json = await resp.json();
+      setSections(json.sections)
       setPageHtml(editedTemplate)
     } catch (error) {
       console.log(error)

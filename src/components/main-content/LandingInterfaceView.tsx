@@ -9,7 +9,7 @@ export const LandingInterfaceView = () => {
 
 
   return (
-    <div className="relative w-[90%] h-full border-2 rounded-xl border-gray-300  overflow-hidden m-auto">
+    <div className="relative w-full h-full border-2 rounded-xl border-gray-300  overflow-hidden m-auto">
       <section className="bg-gray-200 p-4 flex justify-between items-center">
         <div className="flex gap-2">
           <div className="w-[15px] h-[15px] rounded-full bg-gray-400"></div>

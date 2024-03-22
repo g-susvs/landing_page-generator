@@ -1,9 +1,12 @@
-import { useGeneratePageStore, useUiStore } from '@/store'
-import { useForm } from '@/hooks'
-import { APIResponse, SectionType } from '@/interfaces/api-response'
+import { useForm } from "@/hooks";
+import { APIResponse } from "@/interfaces/api-response";
+import { useGeneratePageStore, useUiStore } from "@/store";
+import { SiCodemagic } from "react-icons/si";
 
-export const SectionItemEdit = ({ sectionId }: { sectionId: SectionType }) => {
+export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
+
     const template = useGeneratePageStore((state) => state.html);
+
     const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
     const toggleLoadingEditSection = useUiStore((state) => state.toggleLoadingEditSection);
 
@@ -43,7 +46,11 @@ export const SectionItemEdit = ({ sectionId }: { sectionId: SectionType }) => {
     };
 
     return (
-        <div className='rounded-md border-2 border-gray-300 p-2 flex flex-col gap-2'>
+        <>
+            <span className="flex gap-2 items-center font-bold text-xl  text-purple-500">
+                <h4 className="">Editar con AI</h4>
+                <SiCodemagic />
+            </span>
             <textarea
                 name="description"
                 value={description}
@@ -56,6 +63,6 @@ export const SectionItemEdit = ({ sectionId }: { sectionId: SectionType }) => {
             <button type="button" className="btn" onClick={sendInfoToEdit}>
                 Realizar cambio
             </button>
-        </div>
+        </>
     )
 }

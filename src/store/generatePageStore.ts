@@ -1,20 +1,18 @@
-import { Usage } from '@/interfaces/api-response';
+import { ElementToEdit, Sections, Usage } from '@/interfaces/api-response';
 import { create } from 'zustand'
 
 interface GeneratePageState {
     html: string;
     loading: boolean;
-    usage: Usage;
     templateOption: number;
     editedTemplate: string;
-    sections: string[];
+    sections: {[d: string]: ElementToEdit[]};
 
     setIsLoading: (value: boolean) => void;
     setPageHtml: (value: string) => void;
     setEditedTemplate: (value: string) => void;
-    setUsage: (value: Usage) => void;
     setTemplateOption: (value: number) => void;
-    setSections: (value: string[]) => void;
+    setSections: (value: {[d: string]: ElementToEdit[]}) => void;
 }
 
 export const useGeneratePageStore = create<GeneratePageState>((set) => ({
@@ -22,12 +20,8 @@ export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     html: '',
     templateOption: 0,
     editedTemplate: '',
-    sections:[],
-    usage: {
-        prompt_tokens: 0,
-        completion_tokens: 0,
-        total_tokens: 0
-    },
+    sections: {},
+    
     setPageHtml: (value: string) => set(state => ({
         html: value
     })),
@@ -36,19 +30,12 @@ export const useGeneratePageStore = create<GeneratePageState>((set) => ({
     })),
     setIsLoading: (value: boolean) => set(state => ({
         loading: value,
-        usage: (state.loading)?{
-            prompt_tokens: 0,
-            completion_tokens: 0,
-            total_tokens: 0
-        }: state.usage
     })),
-    setUsage: (value: Usage) => set(state => ({
-        usage: value
-    })),
+    
     setTemplateOption: (value: number) => set(state => ({
         templateOption: value
     })),
-    setSections: (value: string[]) => set(state => ({
-        sections: [...value]
+    setSections: (value: {[d: string]: ElementToEdit[]}) => set(state => ({
+        sections: value
     }))
 }))

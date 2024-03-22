@@ -30,9 +30,16 @@ export default function GeneratorPage() {
   }, []);
 
   return (
-    <div className="grid grid-cols-[400px_1fr] h-[100vh] overflow-hidden">
+    <>
+    <div className="p-4">
+                <span className="bg-black text-2xl text-white font-bold font-sans px-2 py-1 rounded-md">
+                    LPB
+                </span>
+            </div>
+    <div className="grid grid-cols-[450px_1fr] h-[90vh] overflow-hidden">
       <Sidebar />
       <MainContent />
     </div>
+    </>
   );
 }
