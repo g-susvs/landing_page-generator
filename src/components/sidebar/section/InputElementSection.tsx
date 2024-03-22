@@ -1,8 +1,10 @@
+'use client'
+
 import { useEffect } from 'react';
 import { useForm } from "@/hooks";
 import { ElementToEdit } from "@/interfaces/api-response";
-import { useUiStore } from '@/store';
-import { uupdateSectionContent } from '@/helpers/updateSectionContent';
+import { useGeneratePageStore, useUiStore } from '@/store';
+import { updateSectionContent } from '@/helpers/updateSectionContent';
 
 interface Props {
     element: ElementToEdit
@@ -31,12 +33,16 @@ export const InputElementSection = ({ element }: Props) => {
     });
 
     //TODO: agregar loading
+    const html = useGeneratePageStore(state => state.html)
+    const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
     const toggleLoadingEditSection = useUiStore(state => state.toggleLoadingEditSection)
 
     useEffect(() => {
         const typingTimer = setTimeout(() => {
             //TODO: Realizar la acción cuando el usuario deja de escribir
-            uupdateSectionContent(element.text, formState.element_edit)
+            updateSectionContent(html, element.text, formState.element_edit)
+            // const newHtml = updateSectionContent(html, element.text, formState.element_edit)
+            // setPageHtml(newHtml)
         }, 1000);
 
         return () => {
