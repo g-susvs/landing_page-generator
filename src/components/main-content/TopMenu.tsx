@@ -3,6 +3,7 @@
 import { useUiStore, useGeneratePageStore } from "@/store";
 import { FaCode, FaDownload } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
+import { PiKeyReturnBold } from "react-icons/pi";
 
 export const TopMenu = () => {
   const html = useGeneratePageStore((state) => state.html);
@@ -74,8 +75,36 @@ export const TopMenu = () => {
 
   }
 
+
+  async function earlierVersion() {
+    try {
+      const resp = await fetch('http://localhost:3001/api/landing/earlier-version')
+
+      if (!resp.ok) {
+        const error = await resp.json()
+        console.log(error)
+        return
+      }
+
+      const json = await resp.json();
+      setSections(json.sections)
+      setPageHtml(json.data)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+
+
   return (
     <section className="flex gap-4">
+      <button className="btn flex items-center gap-2" disabled={!html} onClick={earlierVersion}>
+        <PiKeyReturnBold />
+        Revertir cambios
+      </button>
       {
         (!showCode)
           ? <button className="btn" onClick={setPreview}>

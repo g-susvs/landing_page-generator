@@ -34,18 +34,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# Prompts
-
-Gym Street
-
-Tengo un gym muy popular en mi ciudad, el enfoque de mi gym está orientado a entrenar calistenia y pesas, tenemos profesores profesionales del deporte.
-
-- Agregale una calificación de 5 estrellas debajo del boton de reservar ahora
-- Agrega un menu al navbar que tenga los siguientes titulos: HOME, ABOUT, SERVICES
-
-Delicias
-
-Pastelería ubicado en el centro de la ciudad, especializada en pasteles de cumpleaños.
-
-Mi negocio se llama 'Sabrocito', es un emprendimiento de comida rápida, nos especializamos en una gran diversidad de hamburguesas, es una restaurant muy popular en mi ciudad, nos ubicamos en el centro de lima.

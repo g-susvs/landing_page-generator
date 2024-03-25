@@ -8,10 +8,12 @@ import { ElementProps } from "./Element";
 
 export const ImageElementSection = ({ element, sectionId }: ElementProps) => {
 
-    const value = element.attributes.src ?? ''
+    const imgSrc = element.attributes.src ?? ''
+    const imgAlt = element.attributes.alt ?? ''
 
     const { formState, onInputChange } = useForm({
-        element_edit: value
+        src: imgSrc,
+        alt: imgAlt
     });
 
     const setPageHtml = useGeneratePageStore(state => state.setPageHtml)
@@ -21,8 +23,16 @@ export const ImageElementSection = ({ element, sectionId }: ElementProps) => {
         updateSectionContent({
             sectionId,
             tagName: element.tagName,
-            oldText: value,
-            currentText: formState.element_edit
+            img: {
+                oldValues:{
+                    src:imgSrc,
+                    alt: imgAlt
+                },
+                newValues: {
+                    src: formState.src,
+                    alt: formState.alt
+                }
+            }
         }
         ).then(data => {
             setPageHtml(data.template)
@@ -32,22 +42,37 @@ export const ImageElementSection = ({ element, sectionId }: ElementProps) => {
 
     return (
         <div className='flex flex-col gap-2'>
-            <span className='capitalize font-bold'>{element.type}</span>
-            <div className='flex flex-row'>
-                <input
-                    className='p-2 border-[1px] w-full border-gray-500 rounded-s-md'
-                    name="element_edit"
-                    type="text"
-                    value={formState.element_edit}
-                    onChange={onInputChange}
-                />
+            <div className="flex justify-between items-center">
+                <span className='uppercase font-bold'>{element.type}</span>
                 <button
-                    className='editElement__button rounded-e-md'
+                    className='editElement__button rounded--md'
                     aria-label="uUdate"
                     onClick={updateLandingContent}>
                     <IoSaveOutline />
                 </button>
             </div>
+            <hr />
+            <div className='flex flex-row items-center gap-2'>
+                <label>src</label>
+                <input
+                    className='p-2 border-[1px] w-full border-gray-500 rounded-md'
+                    name="src"
+                    type="text"
+                    value={formState.src}
+                    onChange={onInputChange}
+                />
+            </div>
+            <div className='flex flex-row items-center gap-2'>
+                <label>alt</label>
+                <input
+                    className='p-2 border-[1px] w-full border-gray-500 rounded-md'
+                    name="alt"
+                    type="text"
+                    value={formState.alt}
+                    onChange={onInputChange}
+                />
+            </div>
+
         </div>
     );
 };

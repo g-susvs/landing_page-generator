@@ -4,23 +4,71 @@ import { ElementToEdit, SectionType } from "@/interfaces/api-response";
 interface Args {
     sectionId: SectionType;
     tagName: string;
-    oldText: string;
-    currentText: string;
+    oldText?: string;
+    currentText?: string;
+    img?: {
+        oldValues: OldImgValues;
+        newValues: NewImgValues;
+    },
+    link?: {
+        oldValues: OldLinkValues;
+        newValues: NewLinkValues;
+    }
+}
+
+interface OldImgValues{
+    src: string;
+    alt: string;
+}
+
+interface NewImgValues{
+    src: string;
+    alt: string;
+}
+interface OldLinkValues{
+    text: string;
+    href: string;
+}
+
+interface NewLinkValues{
+    text: string;
+    href: string;
 }
 
 export const updateSectionContent = async ({
     sectionId,
     tagName,
     oldText,
-    currentText
+    currentText,
+    img,
+    link
 }: Args): Promise<{ template: string, sections: { [id: string]: ElementToEdit[] } }> => {
 
-    const body = {
-        sectionId,
-        tagName,
-        oldText,
-        newText: currentText
+    let body = {}
+
+    if(img){
+        body = {
+            sectionId,
+            tagName,
+            img
+        }
+    }else if(link){
+        body = {
+            sectionId,
+            tagName,
+            link
+        }
     }
+    else{
+        body = {
+            sectionId,
+            tagName,
+            oldText,
+            newText: currentText
+        }
+
+    }
+    
 
     const resp = await fetch('http://localhost:3001/api/landing/edit-element', {
         method: 'PUT',
