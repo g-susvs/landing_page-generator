@@ -8,6 +8,7 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
     const template = useGeneratePageStore((state) => state.html);
 
     const setPageHtml = useGeneratePageStore((state) => state.setPageHtml);
+    const setSections = useGeneratePageStore((state) => state.setSections);
     const toggleLoadingEditSection = useUiStore((state) => state.toggleLoadingEditSection);
 
     const { description, onTextAreaChange } = useForm({
@@ -38,6 +39,7 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
             }
             const json: APIResponse = await resp.json();
             setPageHtml(json.data);
+            setSections(json.sections)
             console.log(json.usage);
             toggleLoadingEditSection()
         } catch (error) {
@@ -48,7 +50,7 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
     return (
         <>
             <span className="flex gap-2 items-center font-bold text-xl  text-purple-500">
-                <h4 className="">Editar con AI</h4>
+                <h4 >Prompt</h4>
                 <SiCodemagic />
             </span>
             <textarea
@@ -57,7 +59,8 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
                 style={{ resize: 'none' }}
                 onChange={onTextAreaChange}
                 rows={5}
-                className="input"
+                spellCheck={false}
+                className="input p-2"
 
             />
             <button type="button" className="btn" onClick={sendInfoToEdit}>

@@ -1,7 +1,7 @@
 import { useGeneratePageStore } from '@/store'
 import { SectionType } from '@/interfaces/api-response'
 import { EditSectionWithAi } from './EditSectionWithAi';
-import { InputElementSection } from './InputElementSection';
+import { Element } from './element/Element';
 
 export const SectionItemEdit = ({ sectionId }: { sectionId: SectionType }) => {
     const sections = useGeneratePageStore((state) => state.sections);
@@ -12,12 +12,12 @@ export const SectionItemEdit = ({ sectionId }: { sectionId: SectionType }) => {
             {
                 sectionSelected.map((element, idx) => {
                     return (
-                        <InputElementSection key={idx} element={element}/>
+                        <Element key={idx} sectionId={sectionId} element={element} />
                     )
                 })
             }
-            
-            <EditSectionWithAi sectionId={sectionId}/>
+
+            <EditSectionWithAi sectionId={sectionId} />
         </div>
     )
 }

@@ -65,11 +65,13 @@ export const TopMenu = () => {
       const json = await resp.json();
       setSections(json.sections)
       setPageHtml(editedTemplate)
+      toggleShowCode()
+
     } catch (error) {
       console.log(error)
+      toggleShowCode()
     }
 
-    toggleShowCode()
   }
 
   return (

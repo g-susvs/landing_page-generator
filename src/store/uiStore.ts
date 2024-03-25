@@ -5,6 +5,7 @@ interface UiStore {
     toggleShowCode: () => void;
     loadingEditSection: boolean;
     toggleLoadingEditSection: () => void;
+    setToggleLoadingEditSection: (value: boolean) => void;
 }
 
 export const useUiStore = create<UiStore>((set) => ({
@@ -15,5 +16,8 @@ export const useUiStore = create<UiStore>((set) => ({
     loadingEditSection: false,
     toggleLoadingEditSection: () => set(state => ({
         loadingEditSection: !state.loadingEditSection
+    })),
+    setToggleLoadingEditSection: (value) => set(state => ({
+        loadingEditSection: value
     })),
 }))

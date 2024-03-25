@@ -35,6 +35,7 @@ export const DescriptionLandingForm = () => {
         id=""
         cols={20}
         rows={5}
+        spellCheck={false}
         className="promptContainer__desc"
       ></textarea>
       <button type="submit" className="btn">

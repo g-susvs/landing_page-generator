@@ -1,19 +1,43 @@
 'use server'
-import { JSDOM } from "jsdom"
+import { ElementToEdit, SectionType } from "@/interfaces/api-response";
 
-export const updateSectionContent = (html: string, oldText: string, currentText: string)=> {
-  
-    const dom = new JSDOM(html)
-    const $document = dom.window.document
+interface Args {
+    sectionId: SectionType;
+    tagName: string;
+    oldText: string;
+    currentText: string;
+}
 
-    const $heroSection = $document.getElementById('hero')
+export const updateSectionContent = async ({
+    sectionId,
+    tagName,
+    oldText,
+    currentText
+}: Args): Promise<{ template: string, sections: { [id: string]: ElementToEdit[] } }> => {
 
-    const $editedElement = $heroSection?.querySelector('h1')
+    const body = {
+        sectionId,
+        tagName,
+        oldText,
+        newText: currentText
+    }
 
-    $editedElement!.innerHTML = currentText
+    const resp = await fetch('http://localhost:3001/api/landing/edit-element', {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
 
-    console.log('Actulizando data en la web')
-    console.log($editedElement?.textContent)
+    if (!resp.ok) {
+        console.log('Error')
+    }
+    const json = await resp.json()
 
-    return dom.serialize()
+
+    return {
+        template: json.data,
+        sections: json.sections as { [id: string]: ElementToEdit[] }
+    }
 }

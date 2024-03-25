@@ -6,9 +6,6 @@
   @apply py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-700 disabled:opacity-50;
 }
 
-.input{
-  @apply p-2 border-[1px] border-gray-500 rounded-md;
-}
 .sidebar{
   @apply flex flex-col;
 }
@@ -49,4 +46,9 @@
 .cardTemplate__img{
   width: 100%;
   height: 100%;
+}
+
+/* Sidebar */
+.editElement__button{
+  @apply p-2 border-[1px] border-gray-500 hover:bg-gray-500 hover:text-white transition;
 }
