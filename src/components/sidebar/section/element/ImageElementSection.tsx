@@ -5,6 +5,7 @@ import { useGeneratePageStore } from '@/store';
 import { updateSectionContent } from '@/helpers/updateSectionContent';
 import { IoSaveOutline } from 'react-icons/io5';
 import { ElementProps } from "./Element";
+import { BsStars } from "react-icons/bs";
 
 export const ImageElementSection = ({ element, sectionId }: ElementProps) => {
 
@@ -44,12 +45,21 @@ export const ImageElementSection = ({ element, sectionId }: ElementProps) => {
         <div className='flex flex-col gap-2'>
             <div className="flex justify-between items-center">
                 <span className='uppercase font-bold'>{element.type}</span>
+                <div className="flex gap-2">
+                <button
+                    className='editElement__button--ai rounded--md'
+                    onClick={() => {}}
+                    title="Generar imagen con AI"
+                    >
+                    <BsStars /> 
+                </button>
                 <button
                     className='editElement__button rounded--md'
-                    aria-label="uUdate"
+                    title="Guardar cambios"
                     onClick={updateLandingContent}>
                     <IoSaveOutline />
                 </button>
+                </div>
             </div>
             <hr />
             <div className='flex flex-row items-center gap-2'>
