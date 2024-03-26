@@ -1,9 +1,12 @@
 import { useForm } from "@/hooks";
 import { APIResponse } from "@/interfaces/api-response";
 import { useGeneratePageStore, useUiStore } from "@/store";
+import { useState } from "react";
 import { SiCodemagic } from "react-icons/si";
 
 export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const template = useGeneratePageStore((state) => state.html);
 
@@ -17,6 +20,7 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
 
     async function sendInfoToEdit() {
         toggleLoadingEditSection()
+        setIsLoading(true)
         try {
             const body = {
                 prompt: description,
@@ -35,13 +39,15 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
                 const error = await resp.json();
                 console.log(error);
                 toggleLoadingEditSection()
+                setIsLoading(false)
+
                 return;
             }
             const json: APIResponse = await resp.json();
             setPageHtml(json.data);
             setSections(json.sections)
-            console.log(json.usage);
             toggleLoadingEditSection()
+            setIsLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -63,8 +69,22 @@ export const EditSectionWithAi = ({ sectionId }: { sectionId: string }) => {
                 className="input p-2"
 
             />
-            <button type="button" className="btn" onClick={sendInfoToEdit}>
-                Realizar cambio
+            <button type="button" disabled={isLoading} className="btn" onClick={sendInfoToEdit}>
+                {
+                    (!isLoading)
+                        ? <span>
+                            Realizar cambio
+                        </span>
+                        :
+                        <div
+                            className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                            role="status">
+                            <span
+                                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                            >Loading...</span>
+                        </div>
+                }
+
             </button>
         </>
     )

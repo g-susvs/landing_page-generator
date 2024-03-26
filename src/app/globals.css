@@ -36,7 +36,7 @@
 
 /* started/templates */
 .cardTemplate{
-  @apply w-full h-[300px] border-2 border-gray-400 rounded-md overflow-hidden cursor-pointer;
+  @apply w-[400px] h-[200px] border-2 border-gray-400 rounded-md overflow-hidden cursor-pointer;
 }
 .cardTemplate:hover > img{
   transition: all 300ms;
@@ -54,4 +54,16 @@
 }
 .editElement__button--ai{
   @apply p-2 border-[1px] border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white transition;
+}
+
+.promptImgContainer{
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+  box-shadow: 0px 10px 30px rgb(73, 73, 73,0.5);
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  z-index: 10px;
+  width: 100%;
 }
